@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'accounts/css/login.css'%}" />
+    <title>login</title>
+  </head>
+  {% block content %}
+  <body>
+    <div class="login_bar">
+      {% if user.is_authenticated %}
+      <div class="login">{{user.username}}님</div>
+      <div class="login"><a href="{% url 'logout' %}">로그아웃</a></div>
+      {% else %}
+      <div class="login">
+        <a href="{% url 'login' %}">로그인</a>
+      </div>
+      <div class="login">
+        <a href="{% url 'signup'%}">회원가입</a>
+      </div>
+      {% endif %}
+    </div>
+    <div class="title" onclick="javascript:location.href='{% url 'home'%}'">
+      Hair Wings
+    </div>
+    <div class="menu_bar">
+      <div onclick="javascript:location.href='{% url 'hairstyle'%}'">
+        헤어스타일
+      </div>
+      <div onclick="javascript:location.href='{% url 'community_home'%}'">
+        Hair커뮤니티
+      </div>
+      <div onclick="javascript:location.href='{% url 'map'%}'">헤어샵 찾기</div>
+    </div>
+    <div class="login_body">
+      <div class="login_title">LOGIN</div>
+      <form method="POST">
+        {% csrf_token %}
+        <div class="login_text">
+          <input name="username" type="text" value="아이디" />
+        </div>
+        <div class="login_text">
+          <input name="password" type="text" value="비밀번호" />
+        </div>
+        <div class="login_button">
+          <input type="submit" class="btn btn-primary" value="로그인" />
+        </div>
+      </form>
+      <div class="login_bottom">
+        <div class="login_find">아이디 찾기</div>
+        <div class="login_find">비밀번호 찾기</div>
+        <div class="login_find2">회원가입</div>
+      </div>
+    </div>
+  </body>
+</html>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'page/css/hair.css'%}" />
+    <title>hair</title>
+  </head>
+  {% block content %}
+  <body>
+    <div class="login_bar">
+      {% if user.is_authenticated %}
+      <div class="login">{{user.username}}님</div>
+      <div class="login"><a href="{% url 'logout' %}">로그아웃</a></div>
+      {% else %}
+      <div class="login">
+        <a href="{% url 'login' %}">로그인</a>
+      </div>
+      <div class="login">
+        <a href="{% url 'signup'%}">회원가입</a>
+      </div>
+      {% endif %}
+    </div>
+    <div class="title" onclick="javascript:location.href='{% url 'home'%}'">
+      Hair Wings
+    </div>
+    <div class="menu_bar">
+      <div onclick="javascript:location.href='{% url 'hairstyle'%}'">
+        헤어스타일
+      </div>
+      <div onclick="javascript:location.href='{% url 'community_home'%}'">
+        Hair커뮤니티
+      </div>
+      <div onclick="javascript:location.href='{% url 'map'%}'">헤어샵 찾기</div>
+    </div>
+    <div class="hair_body">
+      <div class="hair_body_title">리프컷 / 리프펌</div>
+      <div class="hair_body_img">
+        <div class="hair_img">
+          <img src="{% static 'page/image/findhair/find5_1.jpg'%}" alt="" />
+        </div>
+        <div class="hair_img">
+          <img src="{% static 'page/image/findhair/find5_2.jpg'%}" alt="" />
+        </div>
+        <div class="hair_img">
+          <img src="{% static 'page/image/findhair/find5_3.jpg'%}" alt="" />
+        </div>
+      </div>
+      <div class="hair_body_content">
+        <p>
+          리프컷/펌은 앞머리와 옆머리가 마치 나뭇잎처럼 부드러운 컬로 이어져
+          내려온 쉐입의 남성 장발로 분류되는 헤어스타일인데요, 여성 숏컷으로도
+          인기있는 스타일입니다.
+        </p>
+        <p id="font_warning"></p>
+        <p>
+          장발은 얼굴 뒤에 까만 배경이 생기는 효과로 자연스럽게 하관까지
+          강조된다는 특징이 있습니다. 그러므로, 하관이 너무 둥글거나 각지기 보다
+          좀 더 날렵한 형태의 턱선을 가진 얼굴형에게 조금 더 추천드릴만한
+          헤어스타일이 되겠네요!
+        </p>
+        <p id="font_bottom">[ 추천 얼굴형 ] 계란형 / 하트형 / 긴형</p>
+      </div>
+    </div>
+  </body>
+</html>
+{% endblock %}

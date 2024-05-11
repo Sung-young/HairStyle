@@ -1,0 +1,100 @@
+* {
+  box-sizing: border-box;
+}
+
+.login_bar {
+  height: 40px;
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+}
+
+.login {
+  font-size: 15px;
+  margin: 10px;
+}
+
+.title {
+  height: 150px;
+  font-size: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.menu_bar {
+  height: 55px;
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: 3px;
+}
+
+.menu_img {
+  width: 50px;
+  height: 100%;
+  border-right: 1px solid #dddddd;
+  border-left: 1px solid #dddddd;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.hair_body {
+  width: 100%;
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hair_body_title {
+  width: 250px;
+  height: 35px;
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+}
+
+.hair_body_img {
+  width: 600px;
+  height: 300px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.hair_img {
+  margin-right: 3px;
+}
+
+.hair_body_img img {
+  width: 100%;
+  height: 100%;
+}
+
+.hair_body_content {
+  width: 300px;
+  margin-top: 10px;
+  line-height: 30px;
+}
+
+.hair_body_content #font_warning {
+  color: red;
+}
+
+.hair_body_content #font_bottom {
+  font-size: 20px;
+  font-weight: 10px;
+}

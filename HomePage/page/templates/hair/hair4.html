@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'page/css/hair.css'%}" />
+    <title>hair</title>
+  </head>
+  {% block content %}
+  <body>
+    <div class="login_bar">
+      {% if user.is_authenticated %}
+      <div class="login">{{user.username}}님</div>
+      <div class="login"><a href="{% url 'logout' %}">로그아웃</a></div>
+      {% else %}
+      <div class="login">
+        <a href="{% url 'login' %}">로그인</a>
+      </div>
+      <div class="login">
+        <a href="{% url 'signup'%}">회원가입</a>
+      </div>
+      {% endif %}
+    </div>
+    <div class="title" onclick="javascript:location.href='{% url 'home'%}'">
+      Hair Wings
+    </div>
+    <div class="menu_bar">
+      <div onclick="javascript:location.href='{% url 'hairstyle'%}'">
+        헤어스타일
+      </div>
+      <div onclick="javascript:location.href='{% url 'community_home'%}'">
+        Hair커뮤니티
+      </div>
+      <div onclick="javascript:location.href='{% url 'map'%}'">헤어샵 찾기</div>
+    </div>
+    <div class="hair_body">
+      <div class="hair_body_title">쉐도우펌</div>
+      <div class="hair_body_img">
+        <div class="hair_img">
+          <img src="{% static 'page/image/findhair/find4_1.jpg'%}" alt="" />
+        </div>
+        <div class="hair_img">
+          <img src="{% static 'page/image/findhair/find4_2.jpg'%}" alt="" />
+        </div>
+        <div class="hair_img">
+          <img src="{% static 'page/image/findhair/find4_3.jpg'%}" alt="" />
+        </div>
+      </div>
+      <div class="hair_body_content">
+        <p>
+          쉐도우펌은 앞머리를 내린후 S컬의 웨이브를 넣어 볼륨을 살리는
+          스타일리쉬하고 댄디한 느낌을 주는 헤어스타일입니다.
+        </p>
+        <p id="font_warning">
+          둥근형, 하트형분들은 너무 강한 컬을 넣었을 때 헤어가 옆으로 퍼지며
+          가로 길이감이 늘어나보일수 있고, 앞머리를 내리면서 세로 폭이 줄어 다소
+          답답한 인상을 줄 수 있습니다.
+        </p>
+        <p></p>
+        <p id="font_bottom">[ 추천 얼굴형 ] 계란형 / 긴형</p>
+      </div>
+    </div>
+  </body>
+</html>
+{% endblock %}

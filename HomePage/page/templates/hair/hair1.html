@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'page/css/hair.css'%}" />
+    <title>hair</title>
+  </head>
+  {% block content %}
+  <body>
+    <div class="login_bar">
+      {% if user.is_authenticated %}
+      <div class="login">{{user.username}}님</div>
+      <div class="login"><a href="{% url 'logout' %}">로그아웃</a></div>
+      {% else %}
+      <div class="login">
+        <a href="{% url 'login' %}">로그인</a>
+      </div>
+      <div class="login">
+        <a href="{% url 'signup'%}">회원가입</a>
+      </div>
+      {% endif %}
+    </div>
+    <div class="title" onclick="javascript:location.href='{% url 'home'%}'">
+      Hair Wings
+    </div>
+    <div class="menu_bar">
+      <div onclick="javascript:location.href='{% url 'hairstyle'%}'">
+        헤어스타일
+      </div>
+      <div onclick="javascript:location.href='{% url 'community_home'%}'">
+        Hair커뮤니티
+      </div>
+      <div onclick="javascript:location.href='{% url 'map'%}'">헤어샵 찾기</div>
+    </div>
+    <div class="hair_body">
+      <div class="hair_body_title">리젠트컷 / 아이비리그컷</div>
+      <div class="hair_body_img">
+        <div class="hair_img">
+          <img src="{% static 'page/image/findhair/find1_1.jpg'%}" alt="" />
+        </div>
+        <div class="hair_img">
+          <img src="{% static 'page/image/findhair/find1_2.jpg'%}" alt="" />
+        </div>
+        <div class="hair_img">
+          <img src="{% static 'page/image/findhair/find1_3.jpg'%}" alt="" />
+        </div>
+      </div>
+      <div class="hair_body_content">
+        <p>
+          리젠트컷 / 아이비리그컷은 모두 짧게 솟은 헤어가 특징이며, 리젠트컷은
+          세운 머리가 앞으로 뻗쳐있다면 아이비리그컷은 부채꼴모양으로
+          뻗쳐있다는게 살짝의 차이점입니다.
+        </p>
+        <p id="font_warning">
+          !! 긴형의 얼굴형이 해당 컷을 했을때는 이마가 훤히 드러나고 머리가 살짝
+          위로 뻗치며 세로 길이감이 연장될수 있습니다.
+        </p>
+        <p>
+          살짝 반대되는 하트형, 둥근형에 해당되는 짧은 얼굴형, 이마가 좁은분들이
+          리젠트컷/아이비리그컷을 했을때 아쉬운점이 보완되며 가장 시원해보이는
+          매력적인 스포티 스타일이 완성됩니다.
+        </p>
+        <p id="font_bottom">[ 추천 얼굴형 ] 하트형 / 둥근형</p>
+      </div>
+    </div>
+  </body>
+</html>
+{% endblock %}

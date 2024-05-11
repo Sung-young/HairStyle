@@ -1,0 +1,115 @@
+* {
+  box-sizing: border-box;
+}
+
+.login_bar {
+  height: 40px;
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  align-items: center;
+}
+
+.login {
+  font-size: 15px;
+  margin: 10px;
+}
+
+.login a {
+  color: black;
+  text-decoration: none;
+}
+
+.title {
+  height: 150px;
+  font-size: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.menu_bar {
+  height: 55px;
+  border-top: 1px solid #dddddd;
+  border-bottom: 1px solid #dddddd;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: 3px;
+}
+
+.menu_img {
+  width: 50px;
+  height: 100%;
+  border-right: 1px solid #dddddd;
+  border-left: 1px solid #dddddd;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.map_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.map_search {
+  margin-top: 20px;
+}
+
+.map_search input {
+  size: 20px;
+}
+
+.map_search button {
+  background-color: black;
+  color: white;
+  border-radius: 2px;
+  font-weight: 6px;
+}
+
+.map_box {
+  width: 700px;
+  height: 500px;
+  position: relative;
+  overflow: hidden;
+}
+
+.custom_zoomcontrol {
+  position: absolute;
+  top: 50px;
+  right: 10px;
+  width: 36px;
+  height: 80px;
+  overflow: hidden;
+  z-index: 1;
+  background-color: #f5f5f5;
+}
+
+.custom_zoomcontrol span {
+  display: block;
+  width: 36px;
+  height: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.custom_zoomcontrol span img {
+  width: 15px;
+  height: 15px;
+  padding: 12px 0;
+  border: none;
+}
+
+.custom_zoomcontrol span:first-child {
+  border-bottom: 1px solid #bfbfbf;
+}

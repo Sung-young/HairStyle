@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>home</title>
+    <link rel="stylesheet" href="{% static 'page/css/home.css'%}" />
+    <script src="{% static 'page/js/home.js'%}"></script>
+  </head>
+  {% block content %}
+  <body>
+    <script src="./home.js"></script>
+    <div class="login_bar">
+      {% if user.is_authenticated %}
+      <div class="login">{{user.username}}님</div>
+      <div class="login"><a href="{% url 'logout' %}">로그아웃</a></div>
+      {% else %}
+      <div class="login">
+        <a href="{% url 'login' %}">로그인</a>
+      </div>
+      <div class="login">
+        <a href="{% url 'signup'%}">회원가입</a>
+      </div>
+      {% endif %}
+    </div>
+    <div class="title" onclick="javascript:location.href='{% url 'home'%}'">
+      Hair Wings
+    </div>
+    <div class="menu_bar">
+      <div onclick="javascript:location.href='{% url 'hairstyle'%}'">
+        헤어스타일
+      </div>
+      <div onclick="javascript:location.href='{% url 'community_home'%}'">
+        Hair커뮤니티
+      </div>
+      <div onclick="javascript:location.href='{% url 'map'%}'">헤어샵 찾기</div>
+    </div>
+    <div class="home_container">
+      <div class="home_wrapper">
+        <div class="slider">
+          <div class="slides">
+            <img src="{% static 'page/image/hair01.png' %}" alt="" />
+            <img src="{% static 'page/image/hair02.png' %}" alt="" />
+            <img src="{% static 'page/image/hair04.jpg' %}" alt="" />
+          </div>
+        </div>
+        <div class="slider2">
+          <div class="slides2">
+            <img src="{% static 'page/image/hair03.png' %}" alt="" />
+            <img src="{% static 'page/image/hair05.jpg' %}" alt="" />
+            <img src="{% static 'page/image/hair06.jpeg' %}" alt="" />
+          </div>
+        </div>
+      </div>
+      <button
+        class="hair_button"
+        onclick="javascript:location.href='{% url 'hairstyle'%}'"
+      >
+        헤어스타일 찾기 ->
+      </button>
+    </div>
+  </body>
+</html>
+{% endblock %}

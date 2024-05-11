@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      type="text/javascript"
+      src="//dapi.kakao.com/v2/maps/sdk.js?appkey=721ab2b6db40c3fdb1f91dbabb0d76ae&libraries=services"
+    ></script>
+    <link rel="stylesheet" href="{% static 'page/css/map.css'%}" />
+    <title>map</title>
+  </head>
+  {% block content %}
+  <body>
+    <div class="login_bar">
+      {% if user.is_authenticated %}
+      <div class="login">{{user.username}}님</div>
+      <div class="login"><a href="{% url 'logout' %}">로그아웃</a></div>
+      {% else %}
+      <div class="login">
+        <a href="{% url 'login' %}">로그인</a>
+      </div>
+      <div class="login">
+        <a href="{% url 'signup'%}">회원가입</a>
+      </div>
+      {% endif %}
+    </div>
+    <div class="title" onclick="javascript:location.href='{% url 'home'%}'">
+      Hair Wings
+    </div>
+    <div class="menu_bar">
+      <div onclick="javascript:location.href='{% url 'hairstyle'%}'">
+        헤어스타일
+      </div>
+      <div onclick="javascript:location.href='{% url 'community_home'%}'">
+        Hair커뮤니티
+      </div>
+      <div onclick="javascript:location.href='{% url 'map'%}'">헤어샵 찾기</div>
+    </div>
+    <div class="map_container">
+      <div class="map_search">
+        <form onsubmit="searchPlaces(); return false;">
+          검색 :
+          <input type="text" value="검색하세요." id="keyword" />
+          <button type="submit">검색하기</button>
+        </form>
+      </div>
+      <div class="map_box" id="map">
+        <div class="custom_zoomcontrol">
+          <span onclick="zoomIn()"
+            ><img
+              src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_plus.png"
+              alt="확대"
+          /></span>
+          <span onclick="zoomOut()"
+            ><img
+              src="https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/ico_minus.png"
+              alt="축소"
+          /></span>
+        </div>
+        <script>
+          // 마커를 클릭하면 장소명을 표출할 인포윈도우
+          var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
+
+          var mapContainer = document.getElementById("map"), // 지도를 표시할 div
+            mapOption = {
+              center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+              level: 3, // 지도의 확대 레벨
+            };
+
+          // 지도를 생성
+          var map = new kakao.maps.Map(mapContainer, mapOption);
+
+          // 장소 검색 객체를 생성
+          var ps = new kakao.maps.services.Places();
+
+          searchPlaces();
+
+          function searchPlaces() {
+            var keyword = document.getElementById("keyword").value;
+
+            if (!keyword.replace(/^\s+|\s+$/g, "")) {
+              alert("다시 입력해주세요!");
+              return false;
+            }
+
+            ps.keywordSearch(keyword, placesSearchCB);
+          }
+
+          // 키워드 검색 완료 시 호출되는 콜백함수
+          function placesSearchCB(data, status, pagination) {
+            if (status === kakao.maps.services.Status.OK) {
+              // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+              // LatLngBounds 객체에 좌표를 추가
+              var bounds = new kakao.maps.LatLngBounds();
+
+              for (var i = 0; i < data.length; i++) {
+                displayMarker(data[i]);
+                bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
+              }
+
+              // 검색된 장소 위치를 기준으로 지도 범위를 재설정
+              map.setBounds(bounds);
+            }
+          }
+
+          // 지도에 마커를 표시하는 함수
+          function displayMarker(place) {
+            // 마커를 생성하고 지도에 표시
+            var marker = new kakao.maps.Marker({
+              map: map,
+              position: new kakao.maps.LatLng(place.y, place.x),
+            });
+
+            // 마커에 클릭이벤트를 등록
+            kakao.maps.event.addListener(marker, "click", function () {
+              // 마커를 클릭하면 장소명이 인포윈도우에 표출
+              infowindow.setContent(
+                '<div style="padding:5px;font-size:12px;">' +
+                  place.place_name +
+                  "</div>"
+              );
+              infowindow.open(map, marker);
+            });
+          }
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
+{% endblock %}

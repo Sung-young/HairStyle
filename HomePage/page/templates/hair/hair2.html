@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'page/css/hair.css'%}" />
+    <title>hair</title>
+  </head>
+  {% block content %}
+  <body>
+    <div class="login_bar">
+      {% if user.is_authenticated %}
+      <div class="login">{{user.username}}님</div>
+      <div class="login"><a href="{% url 'logout' %}">로그아웃</a></div>
+      {% else %}
+      <div class="login">
+        <a href="{% url 'login' %}">로그인</a>
+      </div>
+      <div class="login">
+        <a href="{% url 'signup'%}">회원가입</a>
+      </div>
+      {% endif %}
+    </div>
+    <div class="title" onclick="javascript:location.href='{% url 'home'%}'">
+      Hair Wings
+    </div>
+    <div class="menu_bar">
+      <div onclick="javascript:location.href='{% url 'hairstyle'%}'">
+        헤어스타일
+      </div>
+      <div onclick="javascript:location.href='{% url 'community_home'%}'">
+        Hair커뮤니티
+      </div>
+      <div onclick="javascript:location.href='{% url 'map'%}'">헤어샵 찾기</div>
+    </div>
+    <div class="hair_body">
+      <div class="hair_body_title">포마드</div>
+      <div class="hair_body_img">
+        <div class="hair_img">
+          <img src="{% static 'page/image/findhair/find2_1.jpg'%}" alt="" />
+        </div>
+        <div class="hair_img">
+          <img src="{% static 'page/image/findhair/find2_2.jpg'%}" alt="" />
+        </div>
+        <div class="hair_img">
+          <img src="{% static 'page/image/findhair/find2_3.jpg'%}" alt="" />
+        </div>
+      </div>
+      <div class="hair_body_content">
+        <p>
+          가르마를 나누어 포마드 기름을 발랐을때의 깔끔하고 단정한 느낌이
+          나오게끔 디자인된 포마드 헤어! 리젠트 / 아이비리그컷처럼 시원하게
+          이마가 드러난다는 비슷한 특징이 있지만, 옆으로 깔끔하게 눌리기에
+          긴형분들도 과하지않게 시도해볼수 있습니다!
+        </p>
+        <p id="font_warning"></p>
+        <p>
+          무난해보이만 남성적인 스타일을 업그레이드 시키는 스타일이기에 얼굴선,
+          뼈대가 굵직한 얼굴형분들께 좀 더 매력적으로 보일 수 있어 추천드리고
+          싶습니다!
+        </p>
+        <p id="font_bottom">[ 추천 얼굴형 ] 각진형 / 하트형 / 긴형+각진형</p>
+      </div>
+    </div>
+  </body>
+</html>
+{% endblock %}

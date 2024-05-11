@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>community</title>
+    <link rel="stylesheet" href="{% static 'page/css/community.css'%}" />
+  </head>
+  {% block content %}
+  <body>
+    <div class="login_bar">
+      {% if user.is_authenticated %}
+      <div class="login">{{user.username}}님</div>
+      <div class="login"><a href="{% url 'logout' %}">로그아웃</a></div>
+      {% else %}
+      <div class="login">
+        <a href="{% url 'login' %}">로그인</a>
+      </div>
+      <div class="login">
+        <a href="{% url 'signup'%}">회원가입</a>
+      </div>
+      {% endif %}
+    </div>
+    <div class="title" onclick="javascript:location.href='{% url 'home'%}'">
+      Hair Wings
+    </div>
+    <div class="menu_bar">
+      <div onclick="javascript:location.href='{% url 'hairstyle'%}'">
+        헤어스타일
+      </div>
+      <div onclick="javascript:location.href='{% url 'community_home'%}'">
+        Hair커뮤니티
+      </div>
+      <div onclick="javascript:location.href='{% url 'map'%}'">헤어샵 찾기</div>
+    </div>
+    <div class="community_container">
+      <h1>
+        COMMUNITY
+        <a class="new_button" href="{% url 'new' %}">새 글 작성하기</a>
+      </h1>
+      <table>
+        <tr>
+          <th>작성자</th>
+          <th>제목&emsp;&emsp;&emsp;&emsp;&emsp;</th>
+          <th>작성일</th>
+        </tr>
+        {% for community in page_obj %}
+        <tr>
+          <td>{{community.author}}</td>
+          <td>
+            <a href="{% url 'detail' community.id %}">{{community.title}}</a>
+          </td>
+          <td>{{community.created_at}}</td>
+        </tr>
+        <tr class="separator">
+          <td colspan="2"></td>
+        </tr>
+        {% endfor %}
+      </table>
+    </div>
+  </body>
+</html>
+{% endblock %}

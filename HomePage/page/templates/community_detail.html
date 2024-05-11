@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'page/css/community_detail.css'%}" />
+    <title>community_detail</title>
+  </head>
+  {% block content %}
+  <body>
+    <div class="login_bar">
+      {% if user.is_authenticated %}
+      <div class="login">{{user.username}}님</div>
+      <div class="login"><a href="{% url 'logout' %}">로그아웃</a></div>
+      {% else %}
+      <div class="login">
+        <a href="{% url 'login' %}">로그인</a>
+      </div>
+      <div class="login">
+        <a href="{% url 'signup'%}">회원가입</a>
+      </div>
+      {% endif %}
+    </div>
+    <div class="title" onclick="javascript:location.href='{% url 'home'%}'">
+      Hair Wings
+    </div>
+    <div class="menu_bar">
+      <div onclick="javascript:location.href='{% url 'hairstyle'%}'">
+        헤어스타일
+      </div>
+      <div onclick="javascript:location.href='{% url 'community_home'%}'">
+        Hair커뮤니티
+      </div>
+      <div onclick="javascript:location.href='{% url 'map'%}'">헤어샵 찾기</div>
+    </div>
+    <div class="community_detail_body">
+      <div class="detail_title">제목 : {{community.title}}</div>
+      <div class="detail_author">작성자 : {{community.author}}</div>
+      <div class="detail_content">{{community.content}}</div>
+      <div class="detail_bottom">
+        <a href="{% url 'community_home' %}">홈</a>
+        <a href="{% url 'edit' community.id %}">수정하기</a>
+        <a href="{% url 'delete' community.id %}">삭제하기</a>
+      </div>
+    </div>
+  </body>
+</html>
+{% endblock %}
